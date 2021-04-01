@@ -385,7 +385,7 @@ export default class FilterableTable extends PureComponent<
             ...style,
             top:
               typeof style.top === 'number'
-                ? style.top - GRID_POSITION_ADJUSTMENT
+                ? (style.top as number) - GRID_POSITION_ADJUSTMENT
                 : style.top,
           }}
           className={`${className} grid-cell grid-header-cell`}
@@ -417,7 +417,7 @@ export default class FilterableTable extends PureComponent<
           ...style,
           top:
             typeof style.top === 'number'
-              ? style.top - GRID_POSITION_ADJUSTMENT
+              ? (style.top as number) - GRID_POSITION_ADJUSTMENT
               : style.top,
         }}
         className={`grid-cell ${this.rowClassName({ index: rowIndex })}`}

@@ -96,9 +96,9 @@ function styled<
   OptionType extends OptionTypeBase,
   SelectComponentType extends
     | WindowedSelectComponentType<OptionType>
-    | ComponentType<SelectProps<OptionType>> = WindowedSelectComponentType<
-    OptionType
-  >
+    | ComponentType<
+        SelectProps<OptionType>
+      > = WindowedSelectComponentType<OptionType>
 >(SelectComponent: SelectComponentType) {
   type SelectProps = SupersetStyledSelectProps<OptionType>;
   type Components = SelectComponents<OptionType>;

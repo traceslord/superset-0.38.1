@@ -67,6 +67,4 @@ export type ErrorMessageComponentProps<
   source?: ErrorSource;
 };
 
-export type ErrorMessageComponent = React.ComponentType<
-  ErrorMessageComponentProps
->;
+export type ErrorMessageComponent = React.ComponentType<ErrorMessageComponentProps>;
