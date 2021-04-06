@@ -318,6 +318,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
         disableSortBy: true,
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [canCreate, canEdit, canDelete],
   );
 

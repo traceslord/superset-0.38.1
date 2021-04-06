@@ -244,6 +244,7 @@ describe('sqlLabReducer', () => {
       newState = sqlLabReducer(newState, removeQueryAction);
       expect(Object.keys(newState.queries)).toHaveLength(0);
     });
+    // eslint-disable-next-line jest/expect-expect
     it('should refresh queries when polling returns empty', () => {
       newState = sqlLabReducer(newState, actions.refreshQueries({}));
     });

@@ -63,6 +63,7 @@ export default function Toast({ toast, onCloseToast }: ToastPresenterProps) {
     setTimeout(showToast);
 
     if (toast.duration > 0) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       hideTimer = setTimeout(handleClosePress, toast.duration);
     }
     return () => {

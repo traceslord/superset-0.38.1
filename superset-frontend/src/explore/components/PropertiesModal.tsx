@@ -102,6 +102,7 @@ function PropertiesModal({ slice, onHide, onSave }: InternalProps) {
   // get the owners of this slice
   useEffect(() => {
     fetchChartData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadOptions = (input = '') => {

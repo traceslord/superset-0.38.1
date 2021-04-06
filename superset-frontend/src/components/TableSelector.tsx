@@ -168,6 +168,7 @@ const TableSelector: FunctionComponent<TableSelectorProps> = ({
     if (dbId && schema) {
       fetchTables();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dbId, schema]);
 
   function onSelectionChange({

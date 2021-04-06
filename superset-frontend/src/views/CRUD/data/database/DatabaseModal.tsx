@@ -282,6 +282,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
   // Validation
   useEffect(() => {
     validate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db ? db.database_name : null, db ? db.sqlalchemy_uri : null]);
 
   // Show/hide

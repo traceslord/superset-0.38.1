@@ -319,6 +319,7 @@ function ChartList(props: ChartListProps) {
         disableSortBy: true,
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [canEdit, canDelete, favoriteStatusRef],
   );
 

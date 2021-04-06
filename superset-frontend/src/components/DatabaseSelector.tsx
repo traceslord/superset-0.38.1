@@ -131,6 +131,7 @@ export default function DatabaseSelector({
     if (currentDbId) {
       fetchSchemas(currentDbId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDbId]);
 
   function onSelectChange({ dbId, schema }: { dbId: number; schema?: string }) {

@@ -60,6 +60,7 @@ export default function EditableTitle({
       setLastTitle(currentTitle);
       setCurrentTitle(title);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   function handleClick() {

@@ -285,6 +285,7 @@ function DatabaseList({ addDangerToast, addSuccessToast }: DatabaseListProps) {
         disableSortBy: true,
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [canDelete, canCreate],
   );
 

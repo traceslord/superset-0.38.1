@@ -137,6 +137,7 @@ export function useListViewState({
       query.sortColumn && query.sortOrder
         ? [{ id: query.sortColumn, desc: query.sortOrder === 'desc' }]
         : initialSort,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [query.sortColumn, query.sortOrder],
   );
 
@@ -153,6 +154,7 @@ export function useListViewState({
     return bulkSelectMode
       ? [bulkSelectColumnConfig, ...columnsWithFilter]
       : columnsWithFilter;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bulkSelectMode, columns]);
 
   const {
@@ -200,6 +202,7 @@ export function useListViewState({
         mergeCreateFilterValues(initialFilters, query.filters || []),
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialFilters]);
 
   useEffect(() => {
@@ -220,12 +223,14 @@ export function useListViewState({
 
     setQuery(queryParams, method);
     fetchData({ pageIndex, pageSize, sortBy, filters });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchData, pageIndex, pageSize, sortBy, filters]);
 
   useEffect(() => {
     if (!isEqual(initialState.pageIndex, pageIndex)) {
       gotoPage(initialState.pageIndex);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const applyFilterValue = (index: number, value: any) => {

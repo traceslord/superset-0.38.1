@@ -74,6 +74,7 @@ export function useListViewResource<D extends object = any>(
         ),
       ),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function hasPerm(perm: string) {
@@ -142,6 +143,7 @@ export function useListViewResource<D extends object = any>(
           updateState({ loading: false });
         });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
@@ -215,6 +217,7 @@ export function useSingleViewResource<D extends object = any>(
       .finally(() => {
         updateState({ loading: false });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const createResource = useCallback((resource: D) => {
@@ -247,6 +250,7 @@ export function useSingleViewResource<D extends object = any>(
       .finally(() => {
         updateState({ loading: false });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateResource = useCallback((resourceID: number, resource: D) => {
@@ -279,6 +283,7 @@ export function useSingleViewResource<D extends object = any>(
       .finally(() => {
         updateState({ loading: false });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

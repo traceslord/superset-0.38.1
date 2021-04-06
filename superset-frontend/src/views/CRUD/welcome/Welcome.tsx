@@ -74,11 +74,13 @@ export default function Welcome({ user }: WelcomeProps) {
       const { value } = e.currentTarget;
       setSearchQuery((value as string) ?? '');
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
   const onTabsSelect = useCallback((e: any) => {
     setActiveTab(e as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

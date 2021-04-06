@@ -49,6 +49,7 @@ describe('TableElement', () => {
     const wrapper = shallow(<TableElement {...mockedProps} />);
     expect(wrapper.find(ColumnElement)).toHaveLength(14);
   });
+  // eslint-disable-next-line jest/expect-expect
   it('mounts', () => {
     mount(
       <Provider store={store}>
