@@ -125,21 +125,6 @@ class ChartHolder extends React.Component {
     this.hideOutline(prevState, this.state);
   }
 
-  hideOutline(prevState, state) {
-    const { outlinedComponentId: timerKey } = state;
-    const { outlinedComponentId: prevTimerKey } = prevState;
-
-    // because of timeout, there might be multiple charts showing outline
-    if (!!timerKey && !prevTimerKey) {
-      setTimeout(() => {
-        this.setState(() => ({
-          outlinedComponentId: null,
-          outlinedColumnName: null,
-        }));
-      }, 2000);
-    }
-  }
-
   handleChangeFocus(nextFocus) {
     this.setState(() => ({ isFocused: nextFocus }));
   }
@@ -164,6 +149,21 @@ class ChartHolder extends React.Component {
 
   handleToggleFullSize() {
     this.setState(prevState => ({ isFullSize: !prevState.isFullSize }));
+  }
+
+  hideOutline(prevState, state) {
+    const { outlinedComponentId: timerKey } = state;
+    const { outlinedComponentId: prevTimerKey } = prevState;
+
+    // because of timeout, there might be multiple charts showing outline
+    if (!!timerKey && !prevTimerKey) {
+      setTimeout(() => {
+        this.setState(() => ({
+          outlinedComponentId: null,
+          outlinedColumnName: null,
+        }));
+      }, 2000);
+    }
   }
 
   render() {

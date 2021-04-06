@@ -179,6 +179,39 @@ export default class AnnotationLayer extends React.PureComponent {
     }
   }
 
+  handleAnnotationType(annotationType) {
+    this.setState({
+      annotationType,
+      sourceType: null,
+      validationErrors: {},
+      value: null,
+    });
+  }
+
+  handleAnnotationSourceType(sourceType) {
+    const { sourceType: prevSourceType } = this.state;
+
+    if (prevSourceType !== sourceType) {
+      this.setState({
+        sourceType,
+        isLoadingOptions: true,
+        validationErrors: {},
+        value: null,
+      });
+    }
+  }
+
+  handleValue(value) {
+    this.setState({
+      value,
+      descriptionColumns: null,
+      intervalEndColumn: null,
+      timeColumn: null,
+      titleColumn: null,
+      overrides: { time_range: null },
+    });
+  }
+
   getSupportedSourceTypes(annotationType) {
     // Get vis types that can be source.
     const sources = getChartMetadataRegistry()
@@ -233,39 +266,6 @@ export default class AnnotationLayer extends React.PureComponent {
     }
     errors.push(this.isValidFormula(value, annotationType));
     return !errors.filter(x => x).length;
-  }
-
-  handleAnnotationType(annotationType) {
-    this.setState({
-      annotationType,
-      sourceType: null,
-      validationErrors: {},
-      value: null,
-    });
-  }
-
-  handleAnnotationSourceType(sourceType) {
-    const { sourceType: prevSourceType } = this.state;
-
-    if (prevSourceType !== sourceType) {
-      this.setState({
-        sourceType,
-        isLoadingOptions: true,
-        validationErrors: {},
-        value: null,
-      });
-    }
-  }
-
-  handleValue(value) {
-    this.setState({
-      value,
-      descriptionColumns: null,
-      intervalEndColumn: null,
-      timeColumn: null,
-      titleColumn: null,
-      overrides: { time_range: null },
-    });
   }
 
   fetchOptions(annotationType, sourceType, isLoadingOptions) {

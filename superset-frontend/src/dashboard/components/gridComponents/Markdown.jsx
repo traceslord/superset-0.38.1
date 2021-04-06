@@ -184,13 +184,6 @@ class Markdown extends React.PureComponent {
     }
   }
 
-  setEditor(editor) {
-    editor.getSession().setUseWrapMode(true);
-    this.setState({
-      editor,
-    });
-  }
-
   handleChangeFocus(nextFocus) {
     const nextFocused = !!nextFocus;
     const nextEditMode = nextFocused ? 'edit' : 'preview';
@@ -232,6 +225,13 @@ class Markdown extends React.PureComponent {
   handleDeleteComponent() {
     const { deleteComponent, id, parentId } = this.props;
     deleteComponent(id, parentId);
+  }
+
+  setEditor(editor) {
+    editor.getSession().setUseWrapMode(true);
+    this.setState({
+      editor,
+    });
   }
 
   renderEditMode() {

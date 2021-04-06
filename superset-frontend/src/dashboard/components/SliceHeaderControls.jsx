@@ -85,6 +85,10 @@ class SliceHeaderControls extends React.PureComponent {
     };
   }
 
+  handleToggleFullSize() {
+    this.props.handleToggleFullSize();
+  }
+
   exportCSV() {
     this.props.exportCSV(this.props.slice.slice_id);
   }
@@ -106,10 +110,6 @@ class SliceHeaderControls extends React.PureComponent {
     this.setState(prevState => ({
       showControls: !prevState.showControls,
     }));
-  }
-
-  handleToggleFullSize() {
-    this.props.handleToggleFullSize();
   }
 
   render() {

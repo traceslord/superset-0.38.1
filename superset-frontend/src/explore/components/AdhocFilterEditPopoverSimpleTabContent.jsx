@@ -118,6 +118,27 @@ export default class AdhocFilterEditPopoverSimpleTabContent extends React.Compon
     this.handleMultiComparatorInputHeightChange();
   }
 
+  handleMultiComparatorInputHeightChange() {
+    if (this.multiComparatorComponent) {
+      const multiComparatorDOMNode = this.multiComparatorComponent?.select
+        ?.select.controlRef;
+      if (multiComparatorDOMNode) {
+        if (
+          multiComparatorDOMNode.clientHeight !==
+          this.state.multiComparatorHeight
+        ) {
+          this.props.onHeightChange(
+            multiComparatorDOMNode.clientHeight -
+              this.state.multiComparatorHeight,
+          );
+          this.setState({
+            multiComparatorHeight: multiComparatorDOMNode.clientHeight,
+          });
+        }
+      }
+    }
+  }
+
   onSubjectChange(option) {
     let subject;
     let clause;
@@ -190,27 +211,6 @@ export default class AdhocFilterEditPopoverSimpleTabContent extends React.Compon
         expressionType: EXPRESSION_TYPES.SIMPLE,
       }),
     );
-  }
-
-  handleMultiComparatorInputHeightChange() {
-    if (this.multiComparatorComponent) {
-      const multiComparatorDOMNode = this.multiComparatorComponent?.select
-        ?.select.controlRef;
-      if (multiComparatorDOMNode) {
-        if (
-          multiComparatorDOMNode.clientHeight !==
-          this.state.multiComparatorHeight
-        ) {
-          this.props.onHeightChange(
-            multiComparatorDOMNode.clientHeight -
-              this.state.multiComparatorHeight,
-          );
-          this.setState({
-            multiComparatorHeight: multiComparatorDOMNode.clientHeight,
-          });
-        }
-      }
-    }
   }
 
   refreshComparatorSuggestions() {

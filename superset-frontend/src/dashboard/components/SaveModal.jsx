@@ -64,20 +64,10 @@ class SaveModal extends React.PureComponent {
     this.modal = null;
     this.handleSaveTypeChange = this.handleSaveTypeChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.saveDashboard = this.saveDashboard.bind(this);
     this.setModalRef = this.setModalRef.bind(this);
     this.toggleDuplicateSlices = this.toggleDuplicateSlices.bind(this);
+    this.saveDashboard = this.saveDashboard.bind(this);
     this.onSave = this.props.onSave.bind(this);
-  }
-
-  setModalRef(ref) {
-    this.modal = ref;
-  }
-
-  toggleDuplicateSlices() {
-    this.setState(prevState => ({
-      duplicateSlices: !prevState.duplicateSlices,
-    }));
   }
 
   handleSaveTypeChange(event) {
@@ -91,6 +81,16 @@ class SaveModal extends React.PureComponent {
       newDashName: event.target.value,
       saveType: SAVE_TYPE_NEWDASHBOARD,
     });
+  }
+
+  setModalRef(ref) {
+    this.modal = ref;
+  }
+
+  toggleDuplicateSlices() {
+    this.setState(prevState => ({
+      duplicateSlices: !prevState.duplicateSlices,
+    }));
   }
 
   saveDashboard() {

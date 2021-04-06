@@ -205,6 +205,21 @@ class TabbedSqlEditors extends React.PureComponent {
     }
   }
 
+  handleSelect(key) {
+    if (key === 'add_tab') {
+      this.newQueryEditor();
+    } else {
+      const qeid = this.props.tabHistory[this.props.tabHistory.length - 1];
+      if (key !== qeid) {
+        const queryEditor = this.props.queryEditors.find(qe => qe.id === key);
+        this.props.actions.switchQueryEditor(
+          queryEditor,
+          this.props.displayLimit,
+        );
+      }
+    }
+  }
+
   popNewTab() {
     queryCount += 1;
     // Clean the url in browser history
@@ -250,21 +265,6 @@ class TabbedSqlEditors extends React.PureComponent {
       queryLimit: this.props.defaultQueryLimit,
     };
     this.props.actions.addQueryEditor(qe);
-  }
-
-  handleSelect(key) {
-    if (key === 'add_tab') {
-      this.newQueryEditor();
-    } else {
-      const qeid = this.props.tabHistory[this.props.tabHistory.length - 1];
-      if (key !== qeid) {
-        const queryEditor = this.props.queryEditors.find(qe => qe.id === key);
-        this.props.actions.switchQueryEditor(
-          queryEditor,
-          this.props.displayLimit,
-        );
-      }
-    }
   }
 
   removeQueryEditor(qe) {

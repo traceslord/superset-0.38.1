@@ -240,6 +240,33 @@ class DateFilterControl extends React.Component {
     document.removeEventListener('click', this.handleClick);
   }
 
+  handleClick(e) {
+    const { target } = e;
+    // switch to `TYPES.CUSTOM_START_END` when the calendar is clicked
+    if (this.startEndSectionRef && this.startEndSectionRef.contains(target)) {
+      this.setTypeCustomStartEnd();
+    }
+
+    // if user click outside popover, popover will hide and we will call onCloseDateFilterControl,
+    // but need to exclude OverlayTrigger component to avoid handle click events twice.
+    if (target.getAttribute('name') !== 'popover-trigger') {
+      if (this.popoverContainer && !this.popoverContainer.contains(target)) {
+        this.props.onCloseDateFilterControl();
+      }
+    }
+  }
+
+  handleClickTrigger() {
+    // when user clicks OverlayTrigger,
+    // popoverContainer component will be created after handleClickTrigger
+    // and before handleClick handler
+    if (!this.popoverContainer) {
+      this.props.onOpenDateFilterControl();
+    } else {
+      this.props.onCloseDateFilterControl();
+    }
+  }
+
   onEnter(event) {
     if (event.key === 'Enter') {
       this.close();
@@ -284,33 +311,6 @@ class DateFilterControl extends React.Component {
       this.setState({ tab: TABS.DEFAULTS });
     } else if (tab === TABS.DEFAULTS) {
       this.setState({ tab: TABS.CUSTOM });
-    }
-  }
-
-  handleClick(e) {
-    const { target } = e;
-    // switch to `TYPES.CUSTOM_START_END` when the calendar is clicked
-    if (this.startEndSectionRef && this.startEndSectionRef.contains(target)) {
-      this.setTypeCustomStartEnd();
-    }
-
-    // if user click outside popover, popover will hide and we will call onCloseDateFilterControl,
-    // but need to exclude OverlayTrigger component to avoid handle click events twice.
-    if (target.getAttribute('name') !== 'popover-trigger') {
-      if (this.popoverContainer && !this.popoverContainer.contains(target)) {
-        this.props.onCloseDateFilterControl();
-      }
-    }
-  }
-
-  handleClickTrigger() {
-    // when user clicks OverlayTrigger,
-    // popoverContainer component will be created after handleClickTrigger
-    // and before handleClick handler
-    if (!this.popoverContainer) {
-      this.props.onOpenDateFilterControl();
-    } else {
-      this.props.onCloseDateFilterControl();
     }
   }
 

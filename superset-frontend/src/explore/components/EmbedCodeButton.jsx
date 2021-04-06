@@ -39,8 +39,15 @@ export default class EmbedCodeButton extends React.Component {
       shortUrlId: 0,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.getCopyUrl = this.getCopyUrl.bind(this);
     this.onShortUrlSuccess = this.onShortUrlSuccess.bind(this);
+    this.getCopyUrl = this.getCopyUrl.bind(this);
+  }
+
+  handleInputChange(e) {
+    const { value, name } = e.currentTarget;
+    const data = {};
+    data[name] = value;
+    this.setState(data);
   }
 
   onShortUrlSuccess(shortUrl) {
@@ -54,13 +61,6 @@ export default class EmbedCodeButton extends React.Component {
     return getShortUrl(getExploreLongUrl(this.props.latestQueryFormData))
       .then(this.onShortUrlSuccess)
       .catch(this.props.addDangerToast);
-  }
-
-  handleInputChange(e) {
-    const { value, name } = e.currentTarget;
-    const data = {};
-    data[name] = value;
-    this.setState(data);
   }
 
   generateEmbedHTML() {

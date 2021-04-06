@@ -52,8 +52,8 @@ class App extends React.PureComponent {
   componentDidMount() {
     /* eslint-disable react/no-did-mount-set-state */
     this.setState({ contentHeight: this.getHeight() });
-    window.addEventListener('hashchange', this.onHashChanged.bind(this));
     window.addEventListener('resize', this.handleResize.bind(this));
+    window.addEventListener('hashchange', this.onHashChanged.bind(this));
   }
 
   componentDidUpdate() {
@@ -68,8 +68,12 @@ class App extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('hashchange', this.onHashChanged.bind(this));
     window.removeEventListener('resize', this.handleResize.bind(this));
+    window.removeEventListener('hashchange', this.onHashChanged.bind(this));
+  }
+
+  handleResize() {
+    this.setState({ contentHeight: this.getHeight() });
   }
 
   onHashChanged() {
@@ -114,10 +118,6 @@ class App extends React.PureComponent {
           'Note that you will need to close other SQL Lab windows before you do this.',
       ),
     );
-  }
-
-  handleResize() {
-    this.setState({ contentHeight: this.getHeight() });
   }
 
   render() {

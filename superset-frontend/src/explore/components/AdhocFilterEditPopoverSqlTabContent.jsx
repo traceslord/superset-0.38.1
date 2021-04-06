@@ -65,6 +65,12 @@ export default class AdhocFilterEditPopoverSqlTabContent extends React.Component
     }
   }
 
+  handleAceEditorRef(ref) {
+    if (ref) {
+      this.aceEditorRef = ref;
+    }
+  }
+
   onSqlExpressionClauseChange(clause) {
     this.props.onChange(
       this.props.adhocFilter.duplicateWith({
@@ -81,12 +87,6 @@ export default class AdhocFilterEditPopoverSqlTabContent extends React.Component
         expressionType: EXPRESSION_TYPES.SQL,
       }),
     );
-  }
-
-  handleAceEditorRef(ref) {
-    if (ref) {
-      this.aceEditorRef = ref;
-    }
   }
 
   render() {

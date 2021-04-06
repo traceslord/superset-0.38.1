@@ -96,6 +96,16 @@ export default class SelectControl extends React.PureComponent {
     }
   }
 
+  handleKeyDownForCreate(event) {
+    const { key } = event;
+    if (key === 'Tab' || (this.props.commaChoosesOption && key === ',')) {
+      // simulate an Enter event
+      if (this.select) {
+        this.select.onKeyDown({ ...event, key: 'Enter' });
+      }
+    }
+  }
+
   // Beware: This is acting like an on-click instead of an on-change
   // (firing every time user chooses vs firing only if a new option is chosen).
   onChange(opt) {
@@ -170,16 +180,6 @@ export default class SelectControl extends React.PureComponent {
       options = options.filter(o => !this.isMetaSelectAllOption(o));
     }
     return options;
-  }
-
-  handleKeyDownForCreate(event) {
-    const { key } = event;
-    if (key === 'Tab' || (this.props.commaChoosesOption && key === ',')) {
-      // simulate an Enter event
-      if (this.select) {
-        this.select.onKeyDown({ ...event, key: 'Enter' });
-      }
-    }
   }
 
   isMetaSelectAllOption(o) {

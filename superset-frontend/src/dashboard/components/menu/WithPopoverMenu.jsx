@@ -70,10 +70,6 @@ class WithPopoverMenu extends React.PureComponent {
     document.removeEventListener('drag', this.handleClick);
   }
 
-  setRef(ref) {
-    this.container = ref;
-  }
-
   handleClick(event) {
     if (!this.props.editMode) {
       return;
@@ -102,6 +98,10 @@ class WithPopoverMenu extends React.PureComponent {
         onChangeFocus(false);
       }
     }
+  }
+
+  setRef(ref) {
+    this.container = ref;
   }
 
   render() {

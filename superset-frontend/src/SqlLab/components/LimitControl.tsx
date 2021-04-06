@@ -62,6 +62,14 @@ export default class LimitControl extends React.PureComponent<
     this.submitAndClose = this.submitAndClose.bind(this);
   }
 
+  handleHide() {
+    this.setState({ showOverlay: false });
+  }
+
+  handleToggle() {
+    this.setState(prevState => ({ showOverlay: !prevState.showOverlay }));
+  }
+
   setValueAndClose(val: string) {
     this.setState({ textValue: val }, this.submitAndClose);
   }
@@ -80,14 +88,6 @@ export default class LimitControl extends React.PureComponent<
       value <= 0 ||
       (this.props.maxRow && value > this.props.maxRow)
     );
-  }
-
-  handleToggle() {
-    this.setState(prevState => ({ showOverlay: !prevState.showOverlay }));
-  }
-
-  handleHide() {
-    this.setState({ showOverlay: false });
   }
 
   renderPopover() {

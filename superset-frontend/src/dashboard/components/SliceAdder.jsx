@@ -120,12 +120,6 @@ class SliceAdder extends React.Component {
     }
   }
 
-  getFilteredSortedSlices(searchTerm, sortBy) {
-    return Object.values(this.props.slices)
-      .filter(createFilter(searchTerm, KEYS_TO_FILTERS))
-      .sort(SliceAdder.sortByComparator(KEYS_TO_SORT[sortBy].key));
-  }
-
   handleKeyPress(ev) {
     if (ev.key === 'Enter') {
       ev.preventDefault();
@@ -134,22 +128,28 @@ class SliceAdder extends React.Component {
     }
   }
 
-  searchUpdated(searchTerm) {
-    this.setState(prevState => ({
-      searchTerm,
-      filteredSlices: this.getFilteredSortedSlices(
-        searchTerm,
-        prevState.sortBy,
-      ),
-    }));
-  }
-
   handleSelect(sortBy) {
     this.setState(prevState => ({
       sortBy,
       filteredSlices: this.getFilteredSortedSlices(
         prevState.searchTerm,
         sortBy,
+      ),
+    }));
+  }
+
+  getFilteredSortedSlices(searchTerm, sortBy) {
+    return Object.values(this.props.slices)
+      .filter(createFilter(searchTerm, KEYS_TO_FILTERS))
+      .sort(SliceAdder.sortByComparator(KEYS_TO_SORT[sortBy].key));
+  }
+
+  searchUpdated(searchTerm) {
+    this.setState(prevState => ({
+      searchTerm,
+      filteredSlices: this.getFilteredSortedSlices(
+        searchTerm,
+        prevState.sortBy,
       ),
     }));
   }

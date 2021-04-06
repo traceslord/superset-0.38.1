@@ -289,13 +289,17 @@ class DatasourceEditor extends React.PureComponent {
         : DATASOURCE_TYPES.physical.key,
     };
 
+    this.handleTabSelect = this.handleTabSelect.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onDatasourcePropChange = this.onDatasourcePropChange.bind(this);
     this.onDatasourceChange = this.onDatasourceChange.bind(this);
     this.syncMetadata = this.syncMetadata.bind(this);
     this.setColumns = this.setColumns.bind(this);
     this.validateAndChange = this.validateAndChange.bind(this);
-    this.handleTabSelect = this.handleTabSelect.bind(this);
+  }
+
+  handleTabSelect(activeTabKey) {
+    this.setState({ activeTabKey });
   }
 
   onChange() {
@@ -472,10 +476,6 @@ class DatasourceEditor extends React.PureComponent {
     );
 
     this.setState({ errors }, callback);
-  }
-
-  handleTabSelect(activeTabKey) {
-    this.setState({ activeTabKey });
   }
 
   renderSettingsFieldset() {

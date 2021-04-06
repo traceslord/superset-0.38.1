@@ -83,6 +83,17 @@ class PropertiesModal extends React.PureComponent {
     JsonEditor.preload();
   }
 
+  async handleErrorResponse(response) {
+    const { error, statusText } = await getClientErrorObject(response);
+    this.dialog.show({
+      title: 'Error',
+      bsSize: 'medium',
+      bsStyle: 'danger',
+      actions: [Dialog.DefaultAction('Ok', () => {}, 'btn-danger')],
+      body: error || statusText || t('An error has occurred'),
+    });
+  }
+
   onColorSchemeChange(value) {
     this.updateFormState('colorScheme', value);
   }
@@ -157,17 +168,6 @@ class PropertiesModal extends React.PureComponent {
     this.setState(state => ({
       isAdvancedOpen: !state.isAdvancedOpen,
     }));
-  }
-
-  async handleErrorResponse(response) {
-    const { error, statusText } = await getClientErrorObject(response);
-    this.dialog.show({
-      title: 'Error',
-      bsSize: 'medium',
-      bsStyle: 'danger',
-      actions: [Dialog.DefaultAction('Ok', () => {}, 'btn-danger')],
-      body: error || statusText || t('An error has occurred'),
-    });
   }
 
   submit(e) {

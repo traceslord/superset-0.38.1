@@ -53,6 +53,7 @@ const startingHeight = 180;
 export default class AdhocMetricEditPopover extends React.Component {
   constructor(props) {
     super(props);
+    this.handleAceEditorRef = this.handleAceEditorRef.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onColumnChange = this.onColumnChange.bind(this);
     this.onAggregateChange = this.onAggregateChange.bind(this);
@@ -61,7 +62,6 @@ export default class AdhocMetricEditPopover extends React.Component {
     this.onDragDown = this.onDragDown.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
-    this.handleAceEditorRef = this.handleAceEditorRef.bind(this);
     this.refreshAceEditor = this.refreshAceEditor.bind(this);
     this.state = {
       adhocMetric: this.props.adhocMetric,
@@ -80,6 +80,12 @@ export default class AdhocMetricEditPopover extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.onMouseUp);
     document.removeEventListener('mousemove', this.onMouseMove);
+  }
+
+  handleAceEditorRef(ref) {
+    if (ref) {
+      this.aceEditorRef = ref;
+    }
   }
 
   onSave() {
@@ -149,12 +155,6 @@ export default class AdhocMetricEditPopover extends React.Component {
 
   onMouseUp() {
     document.removeEventListener('mousemove', this.onMouseMove);
-  }
-
-  handleAceEditorRef(ref) {
-    if (ref) {
-      this.aceEditorRef = ref;
-    }
   }
 
   refreshAceEditor() {

@@ -55,21 +55,6 @@ class DashboardGrid extends React.PureComponent {
     this.handleChangeTab = this.handleChangeTab.bind(this);
   }
 
-  getRowGuidePosition(resizeRef) {
-    if (resizeRef && this.grid) {
-      return (
-        resizeRef.getBoundingClientRect().bottom -
-        this.grid.getBoundingClientRect().top -
-        2
-      );
-    }
-    return null;
-  }
-
-  setGridRef(ref) {
-    this.grid = ref;
-  }
-
   handleResizeStart({ ref, direction }) {
     let rowGuideTop = null;
     if (direction === 'bottom' || direction === 'bottomRight') {
@@ -112,6 +97,21 @@ class DashboardGrid extends React.PureComponent {
 
   handleChangeTab({ pathToTabIndex }) {
     this.props.setDirectPathToChild(pathToTabIndex);
+  }
+
+  getRowGuidePosition(resizeRef) {
+    if (resizeRef && this.grid) {
+      return (
+        resizeRef.getBoundingClientRect().bottom -
+        this.grid.getBoundingClientRect().top -
+        2
+      );
+    }
+    return null;
+  }
+
+  setGridRef(ref) {
+    this.grid = ref;
   }
 
   render() {

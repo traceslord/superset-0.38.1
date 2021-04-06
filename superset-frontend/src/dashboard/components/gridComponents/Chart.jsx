@@ -93,15 +93,15 @@ class Chart extends React.Component {
       height: props.height,
     };
 
-    this.changeFilter = this.changeFilter.bind(this);
     this.handleFilterMenuOpen = this.handleFilterMenuOpen.bind(this);
     this.handleFilterMenuClose = this.handleFilterMenuClose.bind(this);
+    this.setDescriptionRef = this.setDescriptionRef.bind(this);
+    this.setHeaderRef = this.setHeaderRef.bind(this);
+    this.resize = this.resize.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
     this.exploreChart = this.exploreChart.bind(this);
     this.exportCSV = this.exportCSV.bind(this);
     this.forceRefresh = this.forceRefresh.bind(this);
-    this.resize = this.resize.bind(this);
-    this.setDescriptionRef = this.setDescriptionRef.bind(this);
-    this.setHeaderRef = this.setHeaderRef.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -155,6 +155,14 @@ class Chart extends React.Component {
     clearTimeout(this.resizeTimeout);
   }
 
+  handleFilterMenuOpen(chartId, column) {
+    this.props.setFocusedFilterField(chartId, column);
+  }
+
+  handleFilterMenuClose() {
+    this.props.unsetFocusedFilterField();
+  }
+
   getChartHeight() {
     const headerHeight = this.getHeaderHeight();
     const descriptionHeight =
@@ -190,14 +198,6 @@ class Chart extends React.Component {
       columns: Object.keys(newSelectedValues),
     });
     this.props.changeFilter(this.props.chart.id, newSelectedValues);
-  }
-
-  handleFilterMenuOpen(chartId, column) {
-    this.props.setFocusedFilterField(chartId, column);
-  }
-
-  handleFilterMenuClose() {
-    this.props.unsetFocusedFilterField();
   }
 
   exploreChart() {

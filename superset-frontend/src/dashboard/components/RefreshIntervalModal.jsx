@@ -65,6 +65,13 @@ class RefreshIntervalModal extends React.PureComponent {
     this.onCancel = this.onCancel.bind(this);
   }
 
+  handleFrequencyChange(opt) {
+    const value = opt ? opt.value : options[0].value;
+    this.setState({
+      refreshFrequency: value,
+    });
+  }
+
   onSave() {
     this.props.onChange(this.state.refreshFrequency, this.props.editMode);
     this.modalRef.current.close();
@@ -75,13 +82,6 @@ class RefreshIntervalModal extends React.PureComponent {
       refreshFrequency: this.props.refreshFrequency,
     });
     this.modalRef.current.close();
-  }
-
-  handleFrequencyChange(opt) {
-    const value = opt ? opt.value : options[0].value;
-    this.setState({
-      refreshFrequency: value,
-    });
   }
 
   render() {

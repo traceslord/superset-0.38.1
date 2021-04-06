@@ -150,6 +150,10 @@ class SqlEditor extends React.PureComponent {
     window.removeEventListener('resize', this.handleWindowResize);
   }
 
+  handleWindowResize() {
+    this.setState({ height: this.getSqlEditorHeight() });
+  }
+
   onResizeStart() {
     // Set the heights on the ace editor and the ace content area after drag starts
     // to smooth out the visual transition to the new heights when drag ends
@@ -264,10 +268,6 @@ class SqlEditor extends React.PureComponent {
       autocompleteEnabled: !prevState.autocompleteEnabled,
     }));
   };
-
-  handleWindowResize() {
-    this.setState({ height: this.getSqlEditorHeight() });
-  }
 
   elementStyle(dimension, elementSize, gutterSize) {
     return {

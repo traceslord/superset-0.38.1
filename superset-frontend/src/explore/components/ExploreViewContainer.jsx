@@ -164,6 +164,51 @@ class ExploreViewContainer extends React.Component {
     document.removeEventListener('keydown', this.handleKeydown);
   }
 
+  handleKeydown(event) {
+    const controlOrCommand = event.ctrlKey || event.metaKey;
+    if (controlOrCommand) {
+      const isEnter = event.key === 'Enter' || event.keyCode === 13;
+      const isS = event.key === 's' || event.keyCode === 83;
+      if (isEnter) {
+        this.onQuery();
+      } else if (isS) {
+        if (this.props.slice) {
+          this.props.actions
+            .saveSlice(this.props.form_data, {
+              action: 'overwrite',
+              slice_id: this.props.slice.slice_id,
+              slice_name: this.props.slice.slice_name,
+              add_to_dash: 'noSave',
+              goto_dash: false,
+            })
+            .then(({ data }) => {
+              window.location = data.slice.slice_url;
+            });
+        }
+      }
+    }
+  }
+
+  handleResize() {
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+      this.setState({ height: this.getHeight(), width: this.getWidth() });
+    }, 250);
+  }
+
+  handlePopstate() {
+    const formData = window.history.state;
+    if (formData && Object.keys(formData).length) {
+      this.props.actions.setExploreControls(formData);
+      this.props.actions.postChartFormData(
+        formData,
+        false,
+        this.props.timeout,
+        this.props.chart.id,
+      );
+    }
+  }
+
   onQuery() {
     // remove alerts when query
     this.props.actions.removeControlPanelAlert();
@@ -189,31 +234,6 @@ class ExploreViewContainer extends React.Component {
     }
     const navHeight = this.props.standalone ? 0 : 90;
     return `${window.innerHeight - navHeight}px`;
-  }
-
-  handleKeydown(event) {
-    const controlOrCommand = event.ctrlKey || event.metaKey;
-    if (controlOrCommand) {
-      const isEnter = event.key === 'Enter' || event.keyCode === 13;
-      const isS = event.key === 's' || event.keyCode === 83;
-      if (isEnter) {
-        this.onQuery();
-      } else if (isS) {
-        if (this.props.slice) {
-          this.props.actions
-            .saveSlice(this.props.form_data, {
-              action: 'overwrite',
-              slice_id: this.props.slice.slice_id,
-              slice_name: this.props.slice.slice_name,
-              add_to_dash: 'noSave',
-              goto_dash: false,
-            })
-            .then(({ data }) => {
-              window.location = data.slice.slice_url;
-            });
-        }
-      }
-    }
   }
 
   findChangedControlKeys(prevControls, currentControls) {
@@ -257,26 +277,6 @@ class ExploreViewContainer extends React.Component {
     // it seems some browsers don't support pushState title attribute
     if (title) {
       document.title = title;
-    }
-  }
-
-  handleResize() {
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
-      this.setState({ height: this.getHeight(), width: this.getWidth() });
-    }, 250);
-  }
-
-  handlePopstate() {
-    const formData = window.history.state;
-    if (formData && Object.keys(formData).length) {
-      this.props.actions.setExploreControls(formData);
-      this.props.actions.postChartFormData(
-        formData,
-        false,
-        this.props.timeout,
-        this.props.chart.id,
-      );
     }
   }
 
