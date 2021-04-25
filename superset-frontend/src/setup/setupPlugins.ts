@@ -32,6 +32,8 @@ import DeckScreengrid from '../explore/controlPanels/DeckScreengrid';
 import Separator from '../explore/controlPanels/Separator';
 import TimeTable from '../explore/controlPanels/TimeTable';
 
+import EchartsLine from '../echarts/controlPanels/EchartsLine';
+
 export default function setupPlugins() {
   new MainPreset().register();
 
@@ -47,7 +49,8 @@ export default function setupPlugins() {
     .registerValue('deck_path', DeckPath)
     .registerValue('deck_polygon', DeckPolygon)
     .registerValue('deck_scatter', DeckScatter)
-    .registerValue('deck_screengrid', DeckScreengrid);
+    .registerValue('deck_screengrid', DeckScreengrid)
+    .registerValue('echarts_line', EchartsLine);
 
   setupPluginsExtra();
 }

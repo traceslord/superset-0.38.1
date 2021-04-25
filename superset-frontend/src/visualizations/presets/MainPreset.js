@@ -60,6 +60,7 @@ import {
   EchartsTimeseriesChartPlugin,
 } from '@superset-ui/plugin-chart-echarts';
 
+import EchartsLineChartPlugin from 'src/echarts/visualizations/EchartsLine/EchartsLineChartPlugin';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
 import TimeTableChartPlugin from '../TimeTable/TimeTableChartPlugin';
 
@@ -108,6 +109,7 @@ export default class MainPreset extends Preset {
         new EchartsTimeseriesChartPlugin().configure({
           key: 'echarts_timeseries',
         }),
+        new EchartsLineChartPlugin().configure({ key: 'echarts_line' }),
       ],
     });
   }
