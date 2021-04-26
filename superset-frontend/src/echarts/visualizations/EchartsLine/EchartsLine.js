@@ -1,22 +1,9 @@
-// import PropTypes from 'prop-types';
 import { defaultby } from 'src/echarts/utils/defaultby';
 import { groupby } from 'src/echarts/utils/groupby';
 import { sort } from 'src/echarts/utils/sort';
 import { formatColor } from 'src/echarts/utils/colors';
 import { formatDate } from 'src/echarts/utils/dates';
 import selectLayout from '../layout/selectLayout';
-
-// const propTypes = {
-//   width: PropTypes.number.isRequired,
-//   height: PropTypes.number.isRequired,
-//   config: PropTypes.shape({
-//     echartsYLeft: PropTypes.array,
-//     echartsYRight: PropTypes.array,
-//     echartsLegendNotSelected: PropTypes.array,
-//   }),
-//   label: PropTypes.object,
-//   data: PropTypes.arrayOf(PropTypes.object),
-// };
 
 function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   // eslint-disable-next-line no-param-reassign
@@ -249,7 +236,5 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
 function echartsLine(element, props) {
   selectLayout(element, props, drawChart);
 }
-
-// echartsLine.propTypes = propTypes;
 
 export default echartsLine;
