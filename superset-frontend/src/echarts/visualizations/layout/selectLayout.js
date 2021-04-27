@@ -6,8 +6,8 @@ function selectLayout(element, props, drawChart) {
   const propsLabel = props.label || {};
   const teams = [];
   props.data.forEach(data => {
-    if (teams.indexOf(data[propsConfig.echarts_select]) === -1) {
-      teams.push(data[propsConfig.echarts_select]);
+    if (teams.indexOf(data[propsConfig.echartsSelect]) === -1) {
+      teams.push(data[propsConfig.echartsSelect]);
     }
   });
   teams.forEach((data, index, self) => {
@@ -21,7 +21,7 @@ function selectLayout(element, props, drawChart) {
     }
   });
   const teamData = teams.map(t =>
-    props.data.filter(d => d[propsConfig.echarts_select] === t),
+    props.data.filter(d => d[propsConfig.echartsSelect] === t),
   );
 
   const randomNumber = Math.round(Math.random() * 1000000000000000);
@@ -33,7 +33,7 @@ function selectLayout(element, props, drawChart) {
         }" data-index="${index}">${data}</div>`,
     )
     .join('');
-  const selectHtml = propsConfig.echarts_select
+  const selectHtml = propsConfig.echartsSelect
     ? `
     <div class="echarts-select">
       <div class="echarts-select-content">
@@ -59,7 +59,7 @@ function selectLayout(element, props, drawChart) {
     document.getElementById(`echarts-${randomNumber}`),
   );
 
-  if (propsConfig.echarts_select) {
+  if (propsConfig.echartsSelect) {
     const echartsSelect = document.getElementById(
       `echarts-select-input-${randomNumber}`,
     );
